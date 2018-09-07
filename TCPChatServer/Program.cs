@@ -48,14 +48,13 @@ namespace TCPChatServer
                     Console.WriteLine("..............................................");
 
                     // Step no: 5 ........................................
-                    // Server modify (client Message) sent back to client 
+                    // Server modify or new message (client Message) sent back to client 
                     // perform write operation 
                     _sWriter = new StreamWriter(_nstream) { AutoFlush = true };
-                    if (_msgFromClient != null)
-                    {
-                        string modifyingClientMsgBackToServer = _msgFromClient.ToUpper();
-                        _sWriter.WriteLine(modifyingClientMsgBackToServer);
-                    }
+                    Console.WriteLine("Enter the message here for sending to client");
+                    string modifyingClientMsgBackToServer = Console.ReadLine();
+                    _sWriter.WriteLine(modifyingClientMsgBackToServer);
+                   
                 } // connection socket close automatically here 
                 // STEP no : 7 
                 //  TCP Listener stop 
