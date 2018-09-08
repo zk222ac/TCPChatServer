@@ -35,6 +35,7 @@ namespace TCPChatServer
                 Console.WriteLine("Ready for Handshake Call from Client");
                 using (_connectionSocket = _serverSocket.AcceptTcpClient())
                 {
+                    Console.WriteLine("Client connected with IP:" + ((IPEndPoint)_connectionSocket.Client.RemoteEndPoint).Address);
                     Console.WriteLine("Server is activated");
 
                     // Step no : 4 ...........................................
