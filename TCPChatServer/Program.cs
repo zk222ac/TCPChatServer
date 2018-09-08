@@ -15,6 +15,10 @@ namespace TCPChatServer
         private static TcpClient _connectionSocket = null;
         private static TcpListener _serverSocket = null;
         private static IPAddress _ip = IPAddress.Parse("127.0.0.1");
+        //private static IPAddress _ip = IPAddress.Any;
+        //we use this when we used server machine separately,
+        //Any IPAddress means server listen any IP address which is comes
+        //from client for communication  
         private static int _portNumber = 6789;
         private static Stream _nstream = null;
         private static StreamWriter _sWriter = null;
