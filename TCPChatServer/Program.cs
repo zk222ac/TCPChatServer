@@ -13,7 +13,7 @@ namespace TCPChatServer
     {
 
         private static TcpClient _connectionSocket = null;
-        private static TcpListener _serverSocket = null;
+        private static TcpListener _serverWelcomingSocket = null;
         private static IPAddress _ip = IPAddress.Parse("127.0.0.1");
         //private static IPAddress _ip = IPAddress.Any;
         //we use this when we used server machine separately,
@@ -32,12 +32,12 @@ namespace TCPChatServer
             {
                 // Step no: 2..............................................
                 // create handshake , then welcoming server socket 
-                _serverSocket = new TcpListener(_ip, _portNumber);
+                _serverWelcomingSocket = new TcpListener(_ip, _portNumber);
                 // Start listening incoming request from client 
-                _serverSocket.Start();
+                _serverWelcomingSocket.Start();
                 Console.WriteLine("Server is being start");
                 Console.WriteLine("Ready for Handshake Call from Client");
-                using (_connectionSocket = _serverSocket.AcceptTcpClient())
+                using (_connectionSocket = _serverWelcomingSocket.AcceptTcpClient())
                 {
                     Console.WriteLine("Client connected with IP:" + ((IPEndPoint)_connectionSocket.Client.RemoteEndPoint).Address);
                     Console.WriteLine("Server is activated");
@@ -64,7 +64,7 @@ namespace TCPChatServer
                 // STEP no : 7 
                 //  TCP Listener stop 
                 Console.WriteLine("Listener not listening anymore! STOP");
-                _serverSocket.Stop();
+                _serverWelcomingSocket.Stop();
                 Console.ReadKey();
             }
             catch (Exception e)
